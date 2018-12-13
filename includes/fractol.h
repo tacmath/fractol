@@ -42,15 +42,32 @@ struct			s_size
 
 typedef struct s_size	t_size;
 
+struct				s_fractal
+{
+	double x1;
+	double x2;
+	double y1;
+	double y2;
+	double c_r;
+	double c_i;
+	double z_r;
+	double z_i;
+	int	i_max;
+};
+
+typedef struct s_fractal	t_fractal;
+
 struct			s_map
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_size	window;
+	t_fractal mdb;
 };
 
 typedef struct s_map	t_map;
 
+int	ft_rgb(unsigned char r, unsigned char g, unsigned char b);
 void	ft_map_init(t_map *map);
 void	ft_free_map(t_map *map);
 int	ft_destroy(t_map *map);
