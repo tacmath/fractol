@@ -9,6 +9,11 @@ void	ft_map_init(t_map *map)
 	map->mdb.y1 = -1.2;
 	map->mdb.y2 = 1.2;
 	map->mdb.i_max = 50;
+	map->julia.x1 = -1;
+	map->julia.x2 = 1;
+	map->julia.y1 = -1.2;
+	map->julia.y2 = 1.2;
+	map->julia.i_max = 150;
 }
 
 void	ft_free_map(t_map *map)

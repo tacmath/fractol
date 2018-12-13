@@ -63,6 +63,7 @@ struct			s_map
 	void	*win_ptr;
 	t_size	window;
 	t_fractal mdb;
+	t_fractal julia;
 };
 
 typedef struct s_map	t_map;
