@@ -8,12 +8,14 @@ void	ft_map_init(t_map *map)
 	map->mdb.x2 = 0.6;
 	map->mdb.y1 = -1.2;
 	map->mdb.y2 = 1.2;
-	map->mdb.i_max = 50;
-	map->julia.x1 = -1;
-	map->julia.x2 = 1;
+	map->mdb.i_max = 15;
+	map->mdb.status = FALSE;
+	map->julia.x1 = -1.6;
+	map->julia.x2 = 1.6;
 	map->julia.y1 = -1.2;
 	map->julia.y2 = 1.2;
-	map->julia.i_max = 150;
+	map->julia.i_max = 50;
+	map->julia.status = FALSE;
 }
 
 void	ft_free_map(t_map *map)

@@ -19,8 +19,9 @@ INCDIR = includes/
 LIBFILES = libft.a
 MLXFILES = libmlx.a
 SRCFILES = main.c\
-		   event.c\
-		   util.c\
+		fractal.c\
+		event.c\
+		util.c\
 
 INCFILES = fractol.h
 LIB = $(addprefix $(LIBDIR),$(LIBFILES))

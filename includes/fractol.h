@@ -52,6 +52,7 @@ struct				s_fractal
 	double c_i;
 	double z_r;
 	double z_i;
+	char	status;
 	int	i_max;
 };
 
@@ -73,5 +74,10 @@ void	ft_map_init(t_map *map);
 void	ft_free_map(t_map *map);
 int	ft_destroy(t_map *map);
 int	deal_key(int key, t_map *map);
+int     deal_key_press(int key, t_map *map);
+void    ft_mandelbrot_pix(t_map *map, int x, int y);
+void    ft_julia_pix(t_map *map, int x, int y);
+void	ft_mandelbrot(t_map *map);
+void    ft_julia(t_map *map);
 
 #endif

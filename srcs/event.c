@@ -27,3 +27,24 @@ int		deal_key(int key, t_map *map)
 		ft_destroy(map);
 	return (1);
 }
+
+int             deal_key_press(int key, t_map *map)
+{
+	if (map->julia.status == TRUE)
+	{
+		if (key == KEY_PLUS)
+			map->julia.i_max++;
+		if (key == KEY_MINUS && map->julia.i_max > 1)
+			map->julia.i_max--;
+		ft_julia(map);
+	}
+	if (map->mdb.status == TRUE)
+	{
+		if (key == KEY_PLUS)
+			map->mdb.i_max++;
+		if (key == KEY_MINUS && map->mdb.i_max > 1)
+			map->mdb.i_max--;
+		ft_mandelbrot(map);
+	}
+	return (1);
+}
