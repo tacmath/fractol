@@ -32,18 +32,15 @@ int	main(int ac, char **av)
 		return (usage_msg());
 	if (!(map = malloc(sizeof(t_map))))
 		return (0);
-	ft_map_init(map);
 	if (!ft_strcmp("Mandelbrot", av[1]))
-		map->mdb.status = TRUE;
-	if (!ft_strcmp("Julia", av[1]))
-		map->julia.status = TRUE;
+		map->fractal = MANDELBROT;
+	else if (!ft_strcmp("Julia", av[1]))
+		map->fractal = JULIA;
+	ft_map_init(map);
 	map->mlx_ptr = mlx_init();
 	map->win_ptr = mlx_new_window(map->mlx_ptr,
 			map->window.x, map->window.y, "fractol");
-	if (map->mdb.status == TRUE)
-		ft_mandelbrot(map);
-	if (map->julia.status == TRUE)
-		ft_julia(map);
+	ft_draw(map);
 	mlx_hook(map->win_ptr, DESTROY_NOTIFY, 0, ft_destroy, map);
 	mlx_hook(map->win_ptr, MOTION_NOTIFY, 0, deal_mv, map);
 	mlx_hook(map->win_ptr, KEY_PRESS, 0, deal_key_press, map);

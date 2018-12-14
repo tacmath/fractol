@@ -18,6 +18,8 @@
 # include "mlx.h"
 # define TRUE 1
 # define FALSE 0
+# define MANDELBROT 1
+# define JULIA 2
 # define KEY_PRESS               2
 # define BUTTON_RELEASE          5
 # define MOTION_NOTIFY           6
@@ -29,6 +31,7 @@
 # define KEY_DOWN        125
 # define KEY_RIGHT       124
 # define KEY_LEFT        123
+# define KEY_R           15
 # define KEY_S           1
 # define KEY_P           35
 # define KEY_C           8
@@ -54,7 +57,6 @@ struct				s_fractal
 	double c_i;
 	double z_r;
 	double z_i;
-	char	status;
 	int	i_max;
 };
 
@@ -65,11 +67,11 @@ struct			s_map
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_size	window;
+	char	fractal;
 	char	mouse_status;
 	t_size	mouse;
 	double	zoom;
-	t_fractal mdb;
-	t_fractal julia;
+	t_fractal frac;
 };
 
 typedef struct s_map	t_map;
@@ -82,9 +84,8 @@ int	deal_key(int key, t_map *map);
 int     deal_mouse(int button, int x, int y, t_map *map);
 int     deal_mv(int x, int y, t_map *map);
 int     deal_key_press(int key, t_map *map);
-void    ft_mandelbrot_pix(t_map *map, int x, int y);
-void    ft_julia_pix(t_map *map, int x, int y);
 void	ft_mandelbrot(t_map *map);
 void    ft_julia(t_map *map);
+void	ft_draw(t_map *map);
 
 #endif
