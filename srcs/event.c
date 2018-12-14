@@ -39,10 +39,8 @@ int		deal_mv(int x, int y, t_map *map)
 		x = 0;
 	if (y < 0)
 		y = 0;
-	map->mouse.x = x;
-	map->mouse.y = y;
-	map->frac.c_r = -1 + map->mouse.x / (double)(map->window.x / 2);
-	map->frac.c_i = -1 + map->mouse.y / (double)(map->window.y / 2);
+	map->frac.c_r = -1 + x / (double)(map->window.x / 2);
+	map->frac.c_i = -1 + y / (double)(map->window.y / 2);
 	ft_julia(map);
 	return (1);
 }
@@ -64,7 +62,7 @@ int		deal_mouse(int button, int x, int y, t_map *map)
 	dy = y * (map->frac.y2 - map->frac.y1) / ((double)map->window.y * map->zoom) + map->frac.y1;						
 	if (button == ROULETTE_UP)
 	{
-		map->zoom += 0.001;
+		map->zoom += 0.01;
 		map->frac.x1 = dx - ((map->frac.x2 - map->frac.x1) / 10) * 4;
 		map->frac.x2 = dx + ((map->frac.x2 - map->frac.x1) / 10) * 4;
 		map->frac.y1 = dy - ((map->frac.y2 - map->frac.y1) / 10) * 4;
@@ -73,7 +71,7 @@ int		deal_mouse(int button, int x, int y, t_map *map)
 	}
 	if (button == ROULETTE_DOWN)
 	{
-		map->zoom -= 0.001;
+		map->zoom -= 0.01;
 		map->frac.x1 -= (map->frac.x2 - map->frac.x1) / 10;
 		map->frac.x2 += (map->frac.x2 - map->frac.x1) / 10;
 		map->frac.y1 -= (map->frac.y2 - map->frac.y1) / 10;

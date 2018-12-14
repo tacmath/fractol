@@ -19,6 +19,7 @@ int 	usage_msg(void)
 	ft_putendl(" fractals :");
 	ft_putendl(" --> Mandelbrot");
 	ft_putendl(" --> Julia");
+	ft_putendl(" --> Flat");
 	return (0);
 }
 
@@ -28,7 +29,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (usage_msg());
-	if (ft_strcmp("Mandelbrot", av[1]) && ft_strcmp("Julia", av[1]))
+	if (ft_strcmp("Mandelbrot", av[1]) && ft_strcmp("Julia", av[1]) && ft_strcmp("Flat", av[1]))
 		return (usage_msg());
 	if (!(map = malloc(sizeof(t_map))))
 		return (0);
@@ -36,6 +37,8 @@ int	main(int ac, char **av)
 		map->fractal = MANDELBROT;
 	else if (!ft_strcmp("Julia", av[1]))
 		map->fractal = JULIA;
+	else if (!ft_strcmp("Flat", av[1]))
+		map->fractal = FLAT;
 	ft_map_init(map);
 	map->mlx_ptr = mlx_init();
 	map->win_ptr = mlx_new_window(map->mlx_ptr,

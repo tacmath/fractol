@@ -6,8 +6,14 @@ void	ft_julia_init(t_map *map)
 	map->frac.x2 = 1.6;
 	map->frac.y1 = -1.2;
 	map->frac.y2 = 1.2;
-	map->frac.c_r = -0.76;
-	map->frac.c_i = 0.12;
+	if (map->fractal == JULIA)
+		map->frac.c_r = -0.76;
+	else
+		map->frac.c_r = -1.5;
+	if (map->fractal == JULIA)
+		map->frac.c_i = 0.12;
+	else
+		map->frac.c_i = 0;
 	map->frac.i_max = 50;
 }
 
@@ -24,10 +30,10 @@ void	ft_map_init(t_map *map)
 {
 	map->window.x = 1000;
 	map->window.y = 700;
-	if (map->fractal == JULIA)
-		ft_julia_init(map);
 	if (map->fractal == MANDELBROT)
 		ft_mandelbrot_init(map);
+	else
+		ft_julia_init(map);
 	map->mouse_status = FALSE;
 	map->zoom = 1;
 }

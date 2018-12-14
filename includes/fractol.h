@@ -20,6 +20,7 @@
 # define FALSE 0
 # define MANDELBROT 1
 # define JULIA 2
+# define FLAT 3
 # define KEY_PRESS               2
 # define BUTTON_RELEASE          5
 # define MOTION_NOTIFY           6
@@ -69,7 +70,6 @@ struct			s_map
 	t_size	window;
 	char	fractal;
 	char	mouse_status;
-	t_size	mouse;
 	double	zoom;
 	t_fractal frac;
 };

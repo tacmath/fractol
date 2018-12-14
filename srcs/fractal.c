@@ -83,6 +83,8 @@ void	ft_draw(t_map *map)
 {
 	if (map->fractal == JULIA)
 		ft_julia(map);
+	if (map->fractal == FLAT)
+		ft_julia(map);
 	if (map->fractal == MANDELBROT)
 		ft_mandelbrot(map);
 }
