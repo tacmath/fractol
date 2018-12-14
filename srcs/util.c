@@ -14,8 +14,12 @@ void	ft_map_init(t_map *map)
 	map->julia.x2 = 1.6;
 	map->julia.y1 = -1.2;
 	map->julia.y2 = 1.2;
+	map->julia.c_r = -0.76;
+	map->julia.c_i = 0.12;
 	map->julia.i_max = 50;
 	map->julia.status = FALSE;
+	map->mouse_status = FALSE;
+	map->zoom = 1;
 }
 
 void	ft_free_map(t_map *map)

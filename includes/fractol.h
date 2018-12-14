@@ -29,10 +29,12 @@
 # define KEY_DOWN        125
 # define KEY_RIGHT       124
 # define KEY_LEFT        123
+# define KEY_S           1
+# define KEY_P           35
 # define KEY_C           8
 # define RIGHT_CLICK             1
-# define ROULETTE_UP             5
-# define ROULETTE_DOWN   4
+# define ROULETTE_UP		4
+# define ROULETTE_DOWN		5
 
 struct			s_size
 {
@@ -63,6 +65,9 @@ struct			s_map
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_size	window;
+	char	mouse_status;
+	t_size	mouse;
+	double	zoom;
 	t_fractal mdb;
 	t_fractal julia;
 };
@@ -74,6 +79,8 @@ void	ft_map_init(t_map *map);
 void	ft_free_map(t_map *map);
 int	ft_destroy(t_map *map);
 int	deal_key(int key, t_map *map);
+int     deal_mouse(int button, int x, int y, t_map *map);
+int     deal_mv(int x, int y, t_map *map);
 int     deal_key_press(int key, t_map *map);
 void    ft_mandelbrot_pix(t_map *map, int x, int y);
 void    ft_julia_pix(t_map *map, int x, int y);

@@ -13,6 +13,12 @@
 
 #include "fractol.h"
 
+static void ft_color_pix(t_map *map, int x, int y, int i)
+{
+	mlx_pixel_put(map->mlx_ptr, map->win_ptr, x, y,
+	ft_rgb((255 * i) / map->mdb.i_max, (255 * i) / map->mdb.i_max, (255 * i) / map->mdb.i_max));
+}
+
 void	ft_mangelbrot_pix(t_map *map, int x, int y)
 {
 	double 	tmp;
@@ -23,16 +29,16 @@ void	ft_mangelbrot_pix(t_map *map, int x, int y)
 	i = -1;
 	z_r = 0;
 	z_i = 0;
-	while ((z_r * z_r + z_i * z_i) < 4 && ++i < map->mdb.i_max)
+	while ((z_r * z_r + z_i * z_i) < 4 && ++i < map->mdb.i_max * map->zoom)
 	{
 		tmp = z_r;
 		z_r = z_r * z_r - z_i * z_i + map->mdb.c_r;
 		z_i = 2 * z_i * tmp + map->mdb.c_i;
 	}
-	if (i == map->mdb.i_max)
+	if (i == map->mdb.i_max * map->zoom)
 		mlx_pixel_put(map->mlx_ptr, map->win_ptr, x, y, 0);
 	else
-		mlx_pixel_put(map->mlx_ptr, map->win_ptr, x, y, ft_rgb((255 * i) / map->mdb.i_max, (255 * i) / map->mdb.i_max, 255));
+		ft_color_pix(map, x, y, i);
 }
 
 void    ft_julia_pix(t_map *map, int x, int y)
@@ -45,16 +51,16 @@ void    ft_julia_pix(t_map *map, int x, int y)
 	i = -1;
 	z_r = map->julia.z_r;
 	z_i = map->julia.z_i;
-	while ((z_r * z_r + z_i * z_i) < 4 && ++i < map->julia.i_max)
+	while ((z_r * z_r + z_i * z_i) < 4 && ++i < map->julia.i_max * map->zoom)
 	{
 		tmp = z_r;
 		z_r = z_r * z_r - z_i * z_i + map->julia.c_r;
 		z_i = 2 * z_i * tmp + map->julia.c_i;
 	}
-	if (i == map->julia.i_max)
+	if (i == map->julia.i_max * map->zoom)
 		mlx_pixel_put(map->mlx_ptr, map->win_ptr, x, y, 0);
 	else
-		mlx_pixel_put(map->mlx_ptr, map->win_ptr, x, y, ft_rgb((255 * i) / map->julia.i_max, (255 * i) / map->julia.i_max, 255));
+		ft_color_pix(map, x, y, i);
 }
 
 void	ft_mandelbrot(t_map *map)
@@ -68,8 +74,8 @@ void	ft_mandelbrot(t_map *map)
 		x = -1;
 		while (++x < map->window.x)
 		{
-			map->mdb.c_r = x * (map->mdb.x2 - map->mdb.x1) / (double)map->window.x + map->mdb.x1;
-			map->mdb.c_i = y * (map->mdb.y2 - map->mdb.y1) / (double)map->window.y + map->mdb.y1;
+			map->mdb.c_r = x * (map->mdb.x2 - map->mdb.x1) / ((double)map->window.x * map->zoom) + map->mdb.x1;
+			map->mdb.c_i = y * (map->mdb.y2 - map->mdb.y1) / ((double)map->window.y * map->zoom) + map->mdb.y1;
 			map->mdb.z_r = 0;
 			map->mdb.z_i = 0;
 			ft_mangelbrot_pix(map, x, y);
@@ -88,10 +94,8 @@ void    ft_julia(t_map *map)
 		x = -1;
 		while (++x < map->window.x)
 		{
-			map->julia.z_r = x * (map->julia.x2 - map->julia.x1) / (double)map->window.x + map->julia.x1;
-			map->julia.z_i = y * (map->julia.y2 - map->julia.y1) / (double)map->window.y + map->julia.y1;
-			map->julia.c_r = -0.76;
-			map->julia.c_i = 0.12;
+			map->julia.z_r = x * (map->julia.x2 - map->julia.x1) / ((double)map->window.x * map->zoom) + map->julia.x1;
+			map->julia.z_i = y * (map->julia.y2 - map->julia.y1) / ((double)map->window.y * map->zoom) + map->julia.y1;
 			ft_julia_pix(map, x, y);
 		}
 	}

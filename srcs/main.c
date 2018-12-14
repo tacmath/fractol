@@ -45,8 +45,10 @@ int	main(int ac, char **av)
 	if (map->julia.status == TRUE)
 		ft_julia(map);
 	mlx_hook(map->win_ptr, DESTROY_NOTIFY, 0, ft_destroy, map);
+	mlx_hook(map->win_ptr, MOTION_NOTIFY, 0, deal_mv, map);
 	mlx_hook(map->win_ptr, KEY_PRESS, 0, deal_key_press, map);
 	mlx_key_hook(map->win_ptr, deal_key, map);
+	mlx_mouse_hook(map->win_ptr, deal_mouse, map);
 	mlx_loop(map->mlx_ptr);
 	return (1);
 }
