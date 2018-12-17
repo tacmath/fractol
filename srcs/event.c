@@ -49,6 +49,8 @@ int		deal_mouse(int button, int x, int y, t_map *map)
 {
 	double dx;
 	double dy;
+	double size_x;
+	double size_y;
 
 	if (x > map->window.x)
 		x = map->window.x;
@@ -58,24 +60,26 @@ int		deal_mouse(int button, int x, int y, t_map *map)
 		x = 0;
 	if (y < 0)
 		y = 0;
-	dx = x * (map->frac.x2 - map->frac.x1) / ((double)map->window.x * map->zoom) + map->frac.x1;
-	dy = y * (map->frac.y2 - map->frac.y1) / ((double)map->window.y * map->zoom) + map->frac.y1;						
+	size_x = (map->frac.x2 - map->frac.x1);
+	size_y = (map->frac.y2 - map->frac.y1);
+	dx = x * size_x / ((double)map->window.x);
+	dy = y * size_y / ((double)map->window.y);						
 	if (button == ROULETTE_UP)
 	{
-		map->zoom += 0.01;
-		map->frac.x1 = dx - ((map->frac.x2 - map->frac.x1) / 10) * 4;
-		map->frac.x2 = dx + ((map->frac.x2 - map->frac.x1) / 10) * 4;
-		map->frac.y1 = dy - ((map->frac.y2 - map->frac.y1) / 10) * 4;
-		map->frac.y2 = dy + ((map->frac.y2 - map->frac.y1) / 10) * 4;
+		map->frac.i_max += map->frac.i_max / 20;
+		map->frac.x1 += (dx) / 10;
+		map->frac.x2 -= (size_x - dx) / 10;
+		map->frac.y1 += (dy) / 10;
+		map->frac.y2 -= (size_y - dy) / 10;
 		ft_draw(map);
 	}
 	if (button == ROULETTE_DOWN)
 	{
-		map->zoom -= 0.01;
-		map->frac.x1 -= (map->frac.x2 - map->frac.x1) / 10;
-		map->frac.x2 += (map->frac.x2 - map->frac.x1) / 10;
-		map->frac.y1 -= (map->frac.y2 - map->frac.y1) / 10;
-		map->frac.y2 += (map->frac.y2 - map->frac.y1) / 10;
+		map->frac.i_max -= map->frac.i_max / 20;
+		map->frac.x1 -= size_x / 20;
+		map->frac.x2 += size_x / 20;
+		map->frac.y1 -= size_y / 20;
+		map->frac.y2 += size_y / 20;
 		ft_draw(map);
 	}
 	return (1);

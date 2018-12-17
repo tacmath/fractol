@@ -14,7 +14,7 @@ void	ft_julia_init(t_map *map)
 		map->frac.c_i = 0.12;
 	else
 		map->frac.c_i = 0;
-	map->frac.i_max = 50;
+	map->frac.i_max = 100;
 }
 
 void	ft_mandelbrot_init(t_map *map)
@@ -23,13 +23,13 @@ void	ft_mandelbrot_init(t_map *map)
 	map->frac.x2 = 0.6;
 	map->frac.y1 = -1.2;
 	map->frac.y2 = 1.2;
-	map->frac.i_max = 15;
+	map->frac.i_max = 30;
 }
 
 void	ft_map_init(t_map *map)
 {
-	map->window.x = 1000;
-	map->window.y = 700;
+	map->window.x = 1300;
+	map->window.y = 1000;
 	if (map->fractal == MANDELBROT)
 		ft_mandelbrot_init(map);
 	else
