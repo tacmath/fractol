@@ -68,6 +68,8 @@ struct			s_map
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_size	window;
+	int	colors[5][4];
+	int	palette;
 	char	fractal;
 	char	mouse_status;
 	double	zoom;

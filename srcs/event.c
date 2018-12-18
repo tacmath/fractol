@@ -24,6 +24,13 @@ int		deal_key(int key, t_map *map)
 {
 	if (key == KEY_ESCAPE)
 		ft_destroy(map);
+	if (key == KEY_P)
+	{
+		map->palette++;
+		if (map->palette > 4)
+			map->palette = 0;
+		ft_draw(map);
+	}
 	return (1);
 }
 
@@ -66,7 +73,7 @@ int		deal_mouse(int button, int x, int y, t_map *map)
 	dy = y * size_y / ((double)map->window.y);						
 	if (button == ROULETTE_UP)
 	{
-		map->frac.i_max += map->frac.i_max / 20;
+		//	map->frac.i_max += map->frac.i_max / 20;
 		map->frac.x1 += (dx) / 10;
 		map->frac.x2 -= (size_x - dx) / 10;
 		map->frac.y1 += (dy) / 10;
@@ -75,7 +82,7 @@ int		deal_mouse(int button, int x, int y, t_map *map)
 	}
 	if (button == ROULETTE_DOWN)
 	{
-		map->frac.i_max -= map->frac.i_max / 20;
+		//	map->frac.i_max -= map->frac.i_max / 20;
 		map->frac.x1 -= size_x / 20;
 		map->frac.x2 += size_x / 20;
 		map->frac.y1 -= size_y / 20;
@@ -87,6 +94,30 @@ int		deal_mouse(int button, int x, int y, t_map *map)
 
 int             deal_key_press(int key, t_map *map)
 {
+	double size;
+
+	size = map->frac.x2 - map->frac.x1;
+	if (key == KEY_RIGHT)
+	{
+		map->frac.x1 += size / 100;
+		map->frac.x2 += size / 100;
+	}
+	if (key == KEY_LEFT)
+	{
+		map->frac.x1 -= size / 100;
+		map->frac.x2 -= size / 100;
+	}
+	size = map->frac.y2 - map->frac.y1;
+	if (key == KEY_UP)
+	{
+		map->frac.y1 -= size / 100;
+		map->frac.y2 -= size / 100;
+	}
+	if (key == KEY_DOWN)
+	{
+		map->frac.y1 += size / 100;
+		map->frac.y2 += size / 100;
+	}
 	if (map->mouse_status == FALSE && key == KEY_S && map->fractal == JULIA)
 		map->mouse_status = TRUE;
 	else if (key == KEY_S && map->fractal == JULIA)

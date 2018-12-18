@@ -15,10 +15,21 @@
 
 static void ft_color_pix(t_map *map, int x, int y, int i)
 {
+//	int color;
+
 	if (i < 0)
 		i = 0;
 	mlx_pixel_put(map->mlx_ptr, map->win_ptr, x, y,
 	ft_rgb((255 * i) / map->frac.i_max, (255 * i) / map->frac.i_max, 127 + (128 * i) / map->frac.i_max));
+/*	if (i % 4 == 0)
+		color = map->colors[map->palette][3];
+	else if (i % 3 == 0)
+		color = map->colors[map->palette][2];
+	else if (i % 2 == 0)
+		color = map->colors[map->palette][1];
+	else
+		color = map->colors[map->palette][0];
+	mlx_pixel_put(map->mlx_ptr, map->win_ptr, x, y, color);*/
 }
 
 void	ft_mandelbrot_pix(t_map *map, int x, int y)
