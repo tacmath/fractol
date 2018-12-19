@@ -13,6 +13,24 @@
 
 #include "fractol.h"
 
+static int		ft_get_color(t_map *map, int i, int div, int color)
+{
+	unsigned char r;
+	unsigned char g;
+	unsigned char b;
+	
+	r = ft_hextor(map->colors[map->palette][color - 1]) + ((
+		ft_hextor(map->colors[map->palette][color]) -
+		ft_hextor(map->colors[map->palette][color - 1])) * i) / div;
+	g = ft_hextog(map->colors[map->palette][color - 1]) + ((
+		ft_hextog(map->colors[map->palette][color]) -
+		ft_hextog(map->colors[map->palette][color - 1])) * i) / div;
+	b = ft_hextob(map->colors[map->palette][color - 1]) + ((
+		ft_hextob(map->colors[map->palette][color]) -
+		ft_hextob(map->colors[map->palette][color - 1])) * i) / div;
+	return (ft_rgb(r, g, b));
+}
+
 static void ft_color_pix(t_map *map, int x, int y, int i)
 {
 	int color;
@@ -20,11 +38,11 @@ static void ft_color_pix(t_map *map, int x, int y, int i)
 	if (i < 0)
 		i = 0;
 	if (i < 10)
-		color = ft_rgb((255 * i) / 10, 0, 127 - (127 * i) / 10);
+		color = ft_get_color(map, i, 10, 1);
 	else if (i < 50)
-		color = ft_rgb(255 , (255 * (i - 10)) / 40, 0);
+		color = ft_get_color(map, i - 10, 40, 2);
 	else
-		color = ft_rgb(255 - (255 * (i - 50)) / (map->frac.i_max - 50), 0, 0);
+		color = ft_get_color(map, i - 50, map->frac.i_max - 50, 3);
 	if (map->color_status == TRUE)
 		mlx_pixel_put(map->mlx_ptr, map->win_ptr, x, y, color);
 	else

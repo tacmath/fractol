@@ -78,7 +78,6 @@ struct			s_map
 
 typedef struct s_map	t_map;
 
-int	ft_rgb(unsigned char r, unsigned char g, unsigned char b);
 void	ft_map_init(t_map *map);
 void	ft_free_map(t_map *map);
 int	ft_destroy(t_map *map);

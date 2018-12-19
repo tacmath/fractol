@@ -40,10 +40,10 @@ void	ft_color_init(t_map *map)
 	map->colors[2][1] = 0x00FFFF;
 	map->colors[2][2] = 0xFF00FF;
 	map->colors[2][3] = 0x0F0F0F;
-	map->colors[3][0] = 0xFFFFFF;
-	map->colors[3][1] = 0xFFFFFF;
-	map->colors[3][2] = 0xFFFFFF;
-	map->colors[3][3] = 0xFFFFFF;
+	map->colors[3][0] = 0x000070;
+	map->colors[3][1] = 0xFF0000;
+	map->colors[3][2] = 0xFFFF00;
+	map->colors[3][3] = 0xFF0000;
 	map->colors[4][0] = 0xFFFFFF;
 	map->colors[4][1] = 0xFFFFFF;
 	map->colors[4][2] = 0xFFFFFF;
@@ -69,9 +69,4 @@ void	ft_free_map(t_map *map)
 	free(map->mlx_ptr);
 	free(map->win_ptr);
 	free(map);
-}
-
-int	ft_rgb(unsigned char r, unsigned char g, unsigned char b)
-{
-	return ((r << 16) | (g << 8) | b);	
 }

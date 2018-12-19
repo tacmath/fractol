@@ -87,6 +87,7 @@ OTHERFILES = ft_atoi.c\
 		ft_print_tables.c\
 		ft_print_tables_fd.c\
 		ft_abs.c\
+		color.c\
 		get_next_line.c\
 
 SRCFILES = $(addprefix $(MEMDIR),$(MEMFILES))\

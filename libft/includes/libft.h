@@ -94,5 +94,9 @@ int					ft_power(int nb, int power);
 void				ft_print_tables(char **tab);
 void				ft_print_tables_fd(char **tab, int fd);
 int					ft_abs(int nb);
+int				ft_rgb(unsigned char r, unsigned char g, unsigned char b);
+unsigned char			ft_hextor(int color);
+unsigned char                   ft_hextog(int color);
+unsigned char                   ft_hextob(int color);
 
 #endif
