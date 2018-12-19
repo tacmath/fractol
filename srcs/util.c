@@ -60,6 +60,7 @@ void	ft_map_init(t_map *map)
 	else
 		ft_julia_init(map);
 	map->mouse_status = FALSE;
+	map->color_status = FALSE;
 	map->palette = 0;
 }
 

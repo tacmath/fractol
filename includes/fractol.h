@@ -72,7 +72,7 @@ struct			s_map
 	int	palette;
 	char	fractal;
 	char	mouse_status;
-	double	zoom;
+	char	color_status;
 	t_fractal frac;
 };
 

@@ -31,6 +31,14 @@ int		deal_key(int key, t_map *map)
 			map->palette = 0;
 		ft_draw(map);
 	}
+	if (key == KEY_C)
+	{
+		if (map->color_status == FALSE)
+			map->color_status = TRUE;
+		else
+			map->color_status = FALSE;
+		ft_draw(map);
+	}
 	return (1);
 }
 

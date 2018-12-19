@@ -15,12 +15,20 @@
 
 static void ft_color_pix(t_map *map, int x, int y, int i)
 {
-//	int color;
+	int color;
 
 	if (i < 0)
 		i = 0;
-	mlx_pixel_put(map->mlx_ptr, map->win_ptr, x, y,
-	ft_rgb((255 * i) / map->frac.i_max, (255 * i) / map->frac.i_max, 127 + (128 * i) / map->frac.i_max));
+	if (i < 10)
+		color = ft_rgb((255 * i) / 10, 0, 127 - (127 * i) / 10);
+	else if (i < 50)
+		color = ft_rgb(255 , (255 * (i - 10)) / 40, 0);
+	else
+		color = ft_rgb(255 - (255 * (i - 50)) / (map->frac.i_max - 50), 0, 0);
+	if (map->color_status == TRUE)
+		mlx_pixel_put(map->mlx_ptr, map->win_ptr, x, y, color);
+	else
+		mlx_pixel_put(map->mlx_ptr, map->win_ptr, x, y, 0xFFFFFF);
 /*	if (i % 4 == 0)
 		color = map->colors[map->palette][3];
 	else if (i % 3 == 0)
