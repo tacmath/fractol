@@ -16,6 +16,7 @@
 
 # include "libft.h"
 # include "mlx.h"
+# include <inttypes.h>
 # define TRUE 1
 # define FALSE 0
 # define MANDELBROT 1
@@ -38,6 +39,7 @@
 # define KEY_FOUR       21
 # define KEY_R           15
 # define KEY_S           1
+# define KEY_I           34
 # define KEY_P           35
 # define KEY_C           8
 # define RIGHT_CLICK             1
@@ -62,7 +64,7 @@ struct				s_fractal
 	double c_i;
 	double z_r;
 	double z_i;
-	int	i_max;
+	intmax_t i_max;
 };
 
 typedef struct s_fractal	t_fractal;
@@ -77,6 +79,7 @@ struct			s_map
 	char	fractal;
 	char	mouse_status;
 	char	color_status;
+	char	inf_status;
 	t_fractal frac;
 };
 

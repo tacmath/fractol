@@ -31,6 +31,12 @@ int		deal_key(int key, t_map *map)
 			map->palette = 0;
 		ft_draw(map);
 	}
+	if (key == KEY_I && map->inf_status == FALSE)
+		map->inf_status = TRUE;
+	else if (key == KEY_I)
+		map->inf_status = FALSE;
+	if (key == KEY_I)
+		ft_draw(map);
 	if (key == KEY_C)
 	{
 		if (map->color_status == FALSE)
@@ -83,7 +89,8 @@ int		deal_mouse(int button, int x, int y, t_map *map)
 	dy = y * size_y / ((double)map->window.y);						
 	if (button == ROULETTE_UP)
 	{
-		//	map->frac.i_max += map->frac.i_max / 20;
+		if (map->inf_status == TRUE)
+			map->frac.i_max += map->frac.i_max / 10;
 		map->frac.x1 += (dx) / 10;
 		map->frac.x2 -= (size_x - dx) / 10;
 		map->frac.y1 += (dy) / 10;
@@ -92,7 +99,8 @@ int		deal_mouse(int button, int x, int y, t_map *map)
 	}
 	if (button == ROULETTE_DOWN)
 	{
-		//	map->frac.i_max -= map->frac.i_max / 20;
+		if (map->inf_status == TRUE)
+			map->frac.i_max -= map->frac.i_max / 20;
 		map->frac.x1 -= size_x / 20;
 		map->frac.x2 += size_x / 20;
 		map->frac.y1 -= size_y / 20;

@@ -22,6 +22,10 @@ void    ft_controls(t_map *map)
 	}
 	else
 		mlx_string_put(map->mlx_ptr, map->win_ptr, 5, 210, 0xFFFFFF, "< C >  colors  :   off");
+	if (map->inf_status == TRUE)
+		mlx_string_put(map->mlx_ptr, map->win_ptr, 5, 180, 0xFFFFFF, "< I >  infini  :    on");
+	else
+		mlx_string_put(map->mlx_ptr, map->win_ptr, 5, 180, 0xFFFFFF, "< I >  infini  :    off");
 	mlx_string_put(map->mlx_ptr, map->win_ptr, 5, 10, 0xFFFFFF, "< ESCAPE >  Quit");
 	mlx_string_put(map->mlx_ptr, map->win_ptr, 30, 40, 0xFFFFFF, "< R > reset");
 	mlx_string_put(map->mlx_ptr, map->win_ptr, 30, 70, 0xFFFFFF, "< + > more iterations");

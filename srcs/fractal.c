@@ -13,7 +13,7 @@
 
 #include "fractol.h"
 
-static int		ft_get_color(t_map *map, int i, int div, int color)
+static int		ft_get_color(t_map *map, intmax_t i, int div, int color)
 {
 	unsigned char r;
 	unsigned char g;
@@ -31,7 +31,7 @@ static int		ft_get_color(t_map *map, int i, int div, int color)
 	return (ft_rgb(r, g, b));
 }
 
-static void ft_color_pix(t_map *map, int x, int y, int i)
+static void ft_color_pix(t_map *map, int x, int y, intmax_t i)
 {
 	int color;
 
@@ -63,7 +63,7 @@ void	ft_mandelbrot_pix(t_map *map, int x, int y)
 	double 	tmp;
 	double	z_r;
 	double	z_i;
-	int	i;
+	intmax_t	i;
 
 	i = -1;
 	z_r = map->frac.z_r;
