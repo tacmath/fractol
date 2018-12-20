@@ -21,7 +21,7 @@ void	ft_mandelbrot_init(t_map *map)
 {
 	map->frac.x1 = -2.1;
 	map->frac.x2 = 0.7;
-	map->frac.y1 = -1.21;
+	map->frac.y1 = -1.2;
 	map->frac.y2 = 1.2;
 	map->frac.i_max = 300;
 }
@@ -44,23 +44,23 @@ void	ft_color_init(t_map *map)
 	map->colors[3][1] = 0xFF0000;
 	map->colors[3][2] = 0xFFFF00;
 	map->colors[3][3] = 0xFF0000;
-	map->colors[4][0] = 0xFFFFFF;
-	map->colors[4][1] = 0xFFFFFF;
-	map->colors[4][2] = 0xFFFFFF;
-	map->colors[4][3] = 0xFFFFFF;
+	map->colors[4][0] = 0x00FFFF;
+	map->colors[4][1] = 0xFFFF00;
+	map->colors[4][2] = 0xFF0000;
+	map->colors[4][3] = 0x0000FF;
 }
 
 void	ft_map_init(t_map *map)
 {
-	map->window.x = 1000;
-	map->window.y = 800;
+	map->window.x = 1200;
+	map->window.y = 900;
 	ft_color_init(map);
 	if (map->fractal == MANDELBROT)
 		ft_mandelbrot_init(map);
 	else
 		ft_julia_init(map);
 	map->mouse_status = FALSE;
-	map->color_status = FALSE;
+	map->color_status = TRUE;
 	map->palette = 0;
 }
 

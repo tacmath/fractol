@@ -75,9 +75,9 @@ void	ft_mandelbrot_pix(t_map *map, int x, int y)
 		z_i = 2 * z_i * tmp + map->frac.c_i;
 	}
 	if (i == map->frac.i_max)
-		mlx_pixel_put(map->mlx_ptr, map->win_ptr, x, y, 0);
+		mlx_pixel_put(map->mlx_ptr, map->win_ptr, x + 400, y, 0);
 	else
-		ft_color_pix(map, x, y, i);
+		ft_color_pix(map, x + 400, y, i);
 }
 
 void	ft_mandelbrot(t_map *map)
@@ -120,6 +120,7 @@ void    ft_julia(t_map *map)
 
 void	ft_draw(t_map *map)
 {
+	ft_controls(map);
 	if (map->fractal == JULIA)
 		ft_julia(map);
 	if (map->fractal == FLAT)

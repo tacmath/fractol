@@ -42,7 +42,7 @@ int	main(int ac, char **av)
 	ft_map_init(map);
 	map->mlx_ptr = mlx_init();
 	map->win_ptr = mlx_new_window(map->mlx_ptr,
-			map->window.x, map->window.y, "fractol");
+			map->window.x + 400, map->window.y, "fractol");
 	ft_draw(map);
 	mlx_hook(map->win_ptr, DESTROY_NOTIFY, 0, ft_destroy, map);
 	mlx_hook(map->win_ptr, MOTION_NOTIFY, 0, deal_mv, map);

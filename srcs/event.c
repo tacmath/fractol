@@ -46,6 +46,7 @@ int		deal_mv(int x, int y, t_map *map)
 {
 	if (map->mouse_status == FALSE)
 		return (0);
+	x -= 400;
 	if (x > map->window.x)
 		x = map->window.x;
 	if (y > map->window.y)
@@ -67,6 +68,7 @@ int		deal_mouse(int button, int x, int y, t_map *map)
 	double size_x;
 	double size_y;
 
+	x -= 400;
 	if (x > map->window.x)
 		x = map->window.x;
 	if (y > map->window.y)
@@ -136,6 +138,17 @@ int             deal_key_press(int key, t_map *map)
 		map->frac.i_max--;
 	if (key == KEY_R)
 		ft_map_init(map);
+	if (map->palette == 4 && map->color_status == TRUE)
+	{
+		if (key == KEY_ONE)
+			ft_color_change(&(map->colors[4][0]));
+		else if (key == KEY_TWO)
+			ft_color_change(&(map->colors[4][1]));
+		else if (key == KEY_THREE)
+			ft_color_change(&(map->colors[4][2]));
+		else if (key == KEY_FOUR)
+			ft_color_change(&(map->colors[4][3]));
+	}
 	ft_draw(map);
 	return (1);
 }

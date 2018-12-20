@@ -32,6 +32,10 @@
 # define KEY_DOWN        125
 # define KEY_RIGHT       124
 # define KEY_LEFT        123
+# define KEY_ONE	18
+# define KEY_TWO	19
+# define KEY_THREE	20
+# define KEY_FOUR       21
 # define KEY_R           15
 # define KEY_S           1
 # define KEY_P           35
@@ -86,6 +90,8 @@ int     deal_mouse(int button, int x, int y, t_map *map);
 int     deal_mv(int x, int y, t_map *map);
 int     deal_key_press(int key, t_map *map);
 void	ft_mandelbrot(t_map *map);
+void	ft_color_change(int *color);
+void	ft_controls(t_map *map);
 void    ft_julia(t_map *map);
 void	ft_draw(t_map *map);
 

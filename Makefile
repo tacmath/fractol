@@ -21,6 +21,8 @@ MLXFILES = libmlx.a
 SRCFILES = main.c\
 		fractal.c\
 		event.c\
+		draw.c\
+		color.c\
 		util.c\
 
 INCFILES = fractol.h
