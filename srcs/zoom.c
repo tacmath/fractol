@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 14:04:42 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/04 14:14:30 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/04 14:52:12 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,17 +33,13 @@ static void	ft_zoom(int x, int y, t_map *map)
 	ft_draw(map);
 }
 
-static void	ft_dezoom(int x, int y, t_map *map)
+static void	ft_dezoom(t_map *map)
 {
-	double dx;
-	double dy;
 	double size_x;
 	double size_y;
 
 	size_x = (map->frac.x2 - map->frac.x1);
 	size_y = (map->frac.y2 - map->frac.y1);
-	dx = x * size_x / ((double)map->window.x);
-	dy = y * size_y / ((double)map->window.y);
 	if (map->inf_status == TRUE)
 		map->frac.i_max -= map->frac.i_max / 20;
 	map->frac.x1 -= size_x / 20;
@@ -52,6 +48,25 @@ static void	ft_dezoom(int x, int y, t_map *map)
 	map->frac.y2 += size_y / 20;
 	ft_draw(map);
 }
+
+static void	ft_center(int x, int y, t_map *map)
+{
+	double dx;
+	double dy;
+	double size_x;
+	double size_y;
+
+	size_x = (map->frac.x2 - map->frac.x1);
+	size_y = (map->frac.y2 - map->frac.y1);
+	dx = x * size_x / ((double)map->window.x) + map->frac.x1;
+	dy = y * size_y / ((double)map->window.y) + map->frac.y1;
+	map->frac.x1 = dx - (size_x / 2);
+	map->frac.x2 = dx + (size_x / 2);
+	map->frac.y1 = dy - (size_y / 2);
+	map->frac.y2 = dy + (size_y / 2);
+	ft_draw(map);
+}
+
 
 int			deal_mouse(int button, int x, int y, t_map *map)
 {
@@ -64,9 +79,11 @@ int			deal_mouse(int button, int x, int y, t_map *map)
 		x = 0;
 	if (y < 0)
 		y = 0;
+	if (button == RIGHT_CLICK)
+		ft_center(x, y, map);
 	if (button == ROULETTE_UP)
 		ft_zoom(x, y, map);
 	if (button == ROULETTE_DOWN)
-		ft_dezoom(x, y, map);
+		ft_dezoom(map);
 	return (1);
 }
