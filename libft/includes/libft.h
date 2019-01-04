@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/05 09:20:46 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/05 14:21:41 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/04 14:26:19 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -94,9 +94,9 @@ int					ft_power(int nb, int power);
 void				ft_print_tables(char **tab);
 void				ft_print_tables_fd(char **tab, int fd);
 int					ft_abs(int nb);
-int				ft_rgb(unsigned char r, unsigned char g, unsigned char b);
-unsigned char			ft_hextor(int color);
-unsigned char                   ft_hextog(int color);
-unsigned char                   ft_hextob(int color);
+int					ft_rgb(unsigned char r, unsigned char g, unsigned char b);
+unsigned char		ft_hextor(int color);
+unsigned char		ft_hextog(int color);
+unsigned char		ft_hextob(int color);
 
 #endif

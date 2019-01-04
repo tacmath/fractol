@@ -6,7 +6,7 @@
 #    By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/11/05 12:24:50 by mtaquet      #+#   ##    ##    #+#        #
-#    Updated: 2018/12/10 02:19:29 by mtaquet     ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/04 14:08:03 by mtaquet     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -21,6 +21,8 @@ MLXFILES = libmlx.a
 SRCFILES = main.c\
 		fractal.c\
 		event.c\
+		event_press.c\
+		zoom.c\
 		draw.c\
 		color.c\
 		util.c\
