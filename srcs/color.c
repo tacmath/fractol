@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 13:17:18 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/04 13:24:07 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/09 10:45:06 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,6 +55,16 @@ static int	ft_get_color(t_map *map, intmax_t i, int div, int color)
 	return (ft_rgb(r, g, b));
 }
 
+void		ft_pixel_put(t_map *map, int x, int y, int color)
+{
+	map->data[0 + x * (map->img_bits_per_pix >> 3)
+		+ y * map->img_size_line] = ft_hextob(color);
+	map->data[1 + x * (map->img_bits_per_pix >> 3)
+		+ y * map->img_size_line] = ft_hextog(color);
+	map->data[2 + x * (map->img_bits_per_pix >> 3)
+		+ y * map->img_size_line] = ft_hextor(color);
+}
+
 void		ft_color_pix(t_map *map, int x, int y, intmax_t i)
 {
 	int color;
@@ -68,9 +78,9 @@ void		ft_color_pix(t_map *map, int x, int y, intmax_t i)
 	else
 		color = ft_get_color(map, i - 50, map->frac.i_max - 50, 3);
 	if (map->color_status == TRUE)
-		mlx_pixel_put(map->mlx_ptr, map->win_ptr, x, y, color);
+		ft_pixel_put(map, x, y, color);
 	else
-		mlx_pixel_put(map->mlx_ptr, map->win_ptr, x, y, 0xFFFFFF);
+		ft_pixel_put(map, x, y, 0xFFFFFF);
 }
 
 void		ft_color_change(int *color)

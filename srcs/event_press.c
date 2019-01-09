@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 14:06:22 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/04 15:02:32 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/09 10:47:50 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,15 +47,17 @@ static void	ft_iterration_changes(int key, t_map *map)
 	{
 		if (map->frac.i_max > 20)
 			map->frac.i_max += map->frac.i_max / 20;
-		else 
+		else
 			map->frac.i_max++;
+		ft_iterrations(map);
 	}
 	if (key == KEY_MINUS && map->frac.i_max > 1)
 	{
 		if (map->frac.i_max > 20)
 			map->frac.i_max -= map->frac.i_max / 20;
-		else 
+		else
 			map->frac.i_max--;
+		ft_iterrations(map);
 	}
 }
 
@@ -63,13 +65,6 @@ int			deal_key_press(int key, t_map *map)
 {
 	ft_move(key, map);
 	ft_iterration_changes(key, map);
-	if (key == KEY_MINUS && map->frac.i_max > 1)
-	{
-		if (map->frac.i_max > 20)
-			map->frac.i_max -= map->frac.i_max / 20;
-		else 
-			map->frac.i_max--;
-	}
 	if (map->palette == 4 && map->color_status == TRUE)
 	{
 		if (key == KEY_ONE)

@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/29 04:34:44 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/04 14:42:29 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/09 12:05:11 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,33 +26,44 @@ static void	ft_deal_other_key(int key, t_map *map)
 		map->mouse_status = TRUE;
 	else if (key == KEY_S && map->fractal == JULIA)
 		map->mouse_status = FALSE;
+	if (key == KEY_P)
+	{
+		map->palette++;
+		if (map->palette > 4)
+			map->palette = 0;
+		ft_color_controls(map);
+	}
+	if (key == KEY_T && map->fractal != FLAT)
+	{
+		map->frac.power++;
+		if (map->frac.power == 7)
+			map->frac.power = 2;
+		ft_head(map);
+	}
 	if (key == KEY_R)
-		ft_map_init(map);
+		ft_fractal_init(map);
 }
 
 int			deal_key(int key, t_map *map)
 {
 	if (key == KEY_ESCAPE)
 		ft_destroy(map);
-	if (key == KEY_P)
-	{
-		map->palette++;
-		if (map->palette > 4)
-			map->palette = 0;
-	}
 	if (key == KEY_I && map->inf_status == FALSE)
 		map->inf_status = TRUE;
 	else if (key == KEY_I)
 		map->inf_status = FALSE;
+	if (key == KEY_I)
+		ft_infini(map);
 	if (key == KEY_C)
 	{
 		if (map->color_status == FALSE)
 			map->color_status = TRUE;
 		else
 			map->color_status = FALSE;
+		ft_color_controls(map);
 	}
 	ft_deal_other_key(key, map);
-	if (key == KEY_C || key == KEY_P || key == KEY_R)
+	if (key == KEY_C || key == KEY_P || key == KEY_R || key == KEY_T)
 		ft_draw(map);
 	return (1);
 }

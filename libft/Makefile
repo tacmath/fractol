@@ -6,7 +6,7 @@
 #    By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/10/04 09:05:22 by mtaquet      #+#   ##    ##    #+#        #
-#    Updated: 2018/12/03 11:23:22 by mtaquet     ###    #+. /#+    ###.fr      #
+#    Updated: 2019/01/09 11:13:16 by mtaquet     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -84,6 +84,7 @@ OTHERFILES = ft_atoi.c\
 		ft_sqrt.c\
 		ft_toupper.c\
 		ft_power.c\
+		ft_dpower.c\
 		ft_print_tables.c\
 		ft_print_tables_fd.c\
 		ft_abs.c\
@@ -100,7 +101,7 @@ INCFILES = libft.h
 SRC = $(addprefix $(SRCDIR),$(SRCFILES))
 INC = $(addprefix $(INCDIR),$(INCFILES))
 OBJ = $(SRC:.c=.o)
-FLAG = -Wall #-Werror -Wextra
+FLAG = -Wall -Werror -Wextra
 
 all: $(NAME)
 

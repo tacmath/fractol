@@ -6,36 +6,53 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 12:57:06 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/04 13:15:20 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/09 12:09:15 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	ft_color_controls(t_map *map, char *tmp)
+static void	ft_palette_put(t_map *map)
 {
+	char c[2];
+
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 30, 240,
+		map->colors[map->palette][2], "< P >  palette :");
+	c[0] = map->palette + 1 + '0';
+	c[1] = 0;
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 205, 240,
+		map->colors[map->palette][2], c);
+	if (map->palette == 4)
+	{
+		mlx_string_put(map->mlx_ptr, map->win_ptr, 50, 270,
+			map->colors[4][0], "< 1 > change first  color");
+		mlx_string_put(map->mlx_ptr, map->win_ptr, 50, 300,
+			map->colors[4][1], "< 2 > change second color");
+		mlx_string_put(map->mlx_ptr, map->win_ptr, 50, 330,
+			map->colors[4][2], "< 3 > change third  color");
+		mlx_string_put(map->mlx_ptr, map->win_ptr, 50, 360,
+			map->colors[4][3], "< 4 > change last   color");
+	}
+}
+
+void		ft_color_controls(t_map *map)
+{
+	int n;
+	int m;
+
+	m = 209;
+	while (++m < 385)
+	{
+		n = 4;
+		while (++n < 300)
+			mlx_pixel_put(map->mlx_ptr, map->win_ptr, n, m, 0);
+	}
 	if (map->color_status == TRUE)
 	{
 		mlx_string_put(map->mlx_ptr, map->win_ptr, 5, 210,
 			map->colors[map->palette][1], "< C >  colors  :    on");
-		mlx_string_put(map->mlx_ptr, map->win_ptr, 30, 240,
-			map->colors[map->palette][2], "< P >  palette :");
-		tmp = ft_itoa(map->palette + 1);
-		mlx_string_put(map->mlx_ptr, map->win_ptr, 205, 240,
-			map->colors[map->palette][2], tmp);
-		free(tmp);
-		if (map->palette == 4)
-		{
-			mlx_string_put(map->mlx_ptr, map->win_ptr, 50, 270,
-				map->colors[4][0], "< 1 > change first  color");
-			mlx_string_put(map->mlx_ptr, map->win_ptr, 50, 300,
-				map->colors[4][1], "< 2 > change second color");
-			mlx_string_put(map->mlx_ptr, map->win_ptr, 50, 330,
-				map->colors[4][2], "< 3 > change third  color");
-			mlx_string_put(map->mlx_ptr, map->win_ptr, 50, 360,
-				map->colors[4][3], "< 4 > change last   color");
-		}
+		ft_palette_put(map);
 	}
 	else
 		mlx_string_put(map->mlx_ptr, map->win_ptr, 5, 210,
@@ -52,6 +69,17 @@ static void	ft_controls_msg(t_map *map)
 		0xFFFFFF, "utilisez la molette de la souris");
 	mlx_string_put(map->mlx_ptr, map->win_ptr, 15, 630,
 		0xFFFFFF, "pour zomer sur un point de la fractale");
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 25, 700,
+		0xFFFFFF, "faites un clique gauche sur un pixel");
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 110, 730,
+		0xFFFFFF, "pour le centrer");
+	if (map->fractal == JULIA)
+	{
+		mlx_string_put(map->mlx_ptr, map->win_ptr, 27, 800,
+			0xFFFFFF, "apuyer sur s puis bouger la souris");
+		mlx_string_put(map->mlx_ptr, map->win_ptr, 30, 830,
+			0xFFFFFF, "pour changer l'ensemble de julia");
+	}
 }
 
 void		ft_controls(t_map *map)
@@ -59,14 +87,12 @@ void		ft_controls(t_map *map)
 	char *tmp;
 
 	tmp = 0;
-	mlx_clear_window(map->mlx_ptr, map->win_ptr);
-	ft_color_controls(map, tmp);
-	if (map->inf_status == TRUE)
-		mlx_string_put(map->mlx_ptr, map->win_ptr, 5, 180,
-			0xFFFFFF, "< I >  infini  :    on");
-	else
-		mlx_string_put(map->mlx_ptr, map->win_ptr, 5, 180,
-			0xFFFFFF, "< I >  infini  :    off");
+	ft_color_controls(map);
+	ft_infini(map);
+	if (map->fractal != FLAT)
+		ft_head(map);
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 5, 180,
+			0xFFFFFF, "< I >  infini  :");
 	mlx_string_put(map->mlx_ptr, map->win_ptr, 5, 10,
 		0xFFFFFF, "< ESCAPE >  Quit");
 	mlx_string_put(map->mlx_ptr, map->win_ptr, 30, 40, 0xFFFFFF, "< R > reset");
@@ -76,8 +102,6 @@ void		ft_controls(t_map *map)
 		0xFFFFFF, "< - > less iterations");
 	mlx_string_put(map->mlx_ptr, map->win_ptr, 140, 130,
 		0xFFFFFF, "iterations :");
-	tmp = ft_itoa(map->frac.i_max);
-	mlx_string_put(map->mlx_ptr, map->win_ptr, 270, 130, 0xFFFFFF, tmp);
-	free(tmp);
+	ft_iterrations(map);
 	ft_controls_msg(map);
 }

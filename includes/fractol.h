@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/05 14:37:32 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/04 14:22:57 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/09 12:31:23 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,6 +19,9 @@
 # include <inttypes.h>
 # define TRUE				1
 # define FALSE				0
+# define WIDTH                          1300
+# define LENGTH                          900
+# define NB_THREAD			90
 # define MANDELBROT			1
 # define JULIA				2
 # define FLAT				3
@@ -38,6 +41,7 @@
 # define KEY_THREE			20
 # define KEY_FOUR			21
 # define KEY_R				15
+# define KEY_T				17
 # define KEY_S				1
 # define KEY_I				34
 # define KEY_P				35
@@ -64,6 +68,7 @@ struct						s_fractal
 	double					c_i;
 	double					z_r;
 	double					z_i;
+	int						power;
 	intmax_t				i_max;
 };
 
@@ -73,9 +78,15 @@ struct						s_map
 {
 	void					*mlx_ptr;
 	void					*win_ptr;
+	void					*img_ptr;
+	char					*data;
 	t_size					window;
+	int						img_bits_per_pix;
+	int						img_size_line;
 	int						colors[5][4];
 	int						palette;
+	int					thread;
+	int					thread_length;
 	char					fractal;
 	char					mouse_status;
 	char					color_status;
@@ -85,17 +96,27 @@ struct						s_map
 
 typedef struct s_map		t_map;
 
+void						ft_fractal_init(t_map *map);
 void						ft_map_init(t_map *map);
+int							ft_image_init(t_map *map);
 void						ft_color_init(t_map *map);
 void						ft_free_map(t_map *map);
+void						ft_threading(t_map *map, void *fractal(void *map));
 int							ft_destroy(t_map *map);
 int							deal_key(int key, t_map *map);
 int							deal_mouse(int button, int x, int y, t_map *map);
 int							deal_mv(int x, int y, t_map *map);
 int							deal_key_press(int key, t_map *map);
 void						ft_color_change(int *color);
+void						ft_pixel_put(t_map *map, int x, int y, int color);
 void						ft_color_pix(t_map *map, int x, int y, intmax_t i);
+void						ft_infini(t_map *map);
+void						ft_iterrations(t_map *map);
+void						ft_color_controls(t_map *map);
+void						ft_head(t_map *map);
 void						ft_controls(t_map *map);
+void						ft_otherbrot_pix(t_map *map, int x, int y);
+void						ft_mandelbrot_pix(t_map *map, int x, int y);
 void						ft_draw(t_map *map);
 
 #endif

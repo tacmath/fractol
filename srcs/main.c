@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/26 11:53:23 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/04 13:15:43 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/09 12:28:03 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 
 static int	usage_msg(void)
 {
-	ft_putendl("Usage : ./fractol [fractals]");
+	ft_putendl("Usage : ./fractol [fractal]");
 	ft_putendl(" fractals :");
 	ft_putendl(" --> Mandelbrot");
 	ft_putendl(" --> Julia");
@@ -33,6 +33,26 @@ static void	ft_get_fractal(t_map *map, char **av)
 		map->fractal = FLAT;
 }
 
+static int	ft_mlx_init(t_map *map)
+{
+	ft_map_init(map);
+	if (!(map->mlx_ptr = mlx_init()))
+	{
+		free(map);
+		return (0);
+	}
+	if (!(map->win_ptr = mlx_new_window(map->mlx_ptr,
+			map->window.x + 400, map->window.y, "fractol")))
+	{
+		free(map->mlx_ptr);
+		free(map);
+		return (0);
+	}
+	if (!ft_image_init(map))
+		return (0);
+	return (1);
+}
+
 int			main(int ac, char **av)
 {
 	t_map	*map;
@@ -45,11 +65,10 @@ int			main(int ac, char **av)
 	if (!(map = malloc(sizeof(t_map))))
 		return (0);
 	ft_get_fractal(map, av);
-	ft_map_init(map);
-	map->mlx_ptr = mlx_init();
-	map->win_ptr = mlx_new_window(map->mlx_ptr,
-			map->window.x + 400, map->window.y, "fractol");
+	if (!ft_mlx_init(map))
+		return (0);
 	ft_draw(map);
+	ft_controls(map);
 	mlx_hook(map->win_ptr, DESTROY_NOTIFY, 0, ft_destroy, map);
 	mlx_hook(map->win_ptr, MOTION_NOTIFY, 0, deal_mv, map);
 	mlx_hook(map->win_ptr, KEY_PRESS, 0, deal_key_press, map);

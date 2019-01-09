@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/05 09:20:46 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/04 14:26:19 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/09 12:12:16 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -91,6 +91,7 @@ void				ft_putnbr(int nb);
 char				**ft_split_whitespaces(char *str);
 int					ft_sqrt(int nb);
 int					ft_power(int nb, int power);
+double				ft_dpow(double nb, int power);
 void				ft_print_tables(char **tab);
 void				ft_print_tables_fd(char **tab, int fd);
 int					ft_abs(int nb);

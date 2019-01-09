@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 14:04:42 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/04 14:52:12 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/09 11:30:00 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,7 +25,10 @@ static void	ft_zoom(int x, int y, t_map *map)
 	dx = x * size_x / ((double)map->window.x);
 	dy = y * size_y / ((double)map->window.y);
 	if (map->inf_status == TRUE)
+	{
 		map->frac.i_max += map->frac.i_max / 10;
+		ft_iterrations(map);
+	}
 	map->frac.x1 += (dx) / 10;
 	map->frac.x2 -= (size_x - dx) / 10;
 	map->frac.y1 += (dy) / 10;
@@ -41,7 +44,10 @@ static void	ft_dezoom(t_map *map)
 	size_x = (map->frac.x2 - map->frac.x1);
 	size_y = (map->frac.y2 - map->frac.y1);
 	if (map->inf_status == TRUE)
+	{
 		map->frac.i_max -= map->frac.i_max / 20;
+		ft_iterrations(map);
+	}
 	map->frac.x1 -= size_x / 20;
 	map->frac.x2 += size_x / 20;
 	map->frac.y1 -= size_y / 20;
@@ -67,7 +73,6 @@ static void	ft_center(int x, int y, t_map *map)
 	ft_draw(map);
 }
 
-
 int			deal_mouse(int button, int x, int y, t_map *map)
 {
 	x -= 400;
@@ -79,7 +84,7 @@ int			deal_mouse(int button, int x, int y, t_map *map)
 		x = 0;
 	if (y < 0)
 		y = 0;
-	if (button == RIGHT_CLICK)
+	if (button == RIGHT_CLICK && y > 0)
 		ft_center(x, y, map);
 	if (button == ROULETTE_UP)
 		ft_zoom(x, y, map);
