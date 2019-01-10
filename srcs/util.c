@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 13:24:44 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/07 16:27:57 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/10 14:46:41 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,10 +16,9 @@
 
 void	ft_free_map(t_map *map)
 {
+	mlx_destroy_image(map->mlx_ptr, map->img_ptr);
+	mlx_destroy_window(map->mlx_ptr, map->win_ptr);
 	free(map->mlx_ptr);
-	free(map->win_ptr);
-	free(map->data);
-	free(map->img_ptr);
 	free(map);
 }
 
@@ -27,7 +26,7 @@ void	ft_threading(t_map *map, void *fractal(void *map))
 {
 	t_map		maps[NB_THREAD];
 	pthread_t	threads[NB_THREAD];
-	int n;
+	int			n;
 
 	n = -1;
 	while (++n < NB_THREAD)

@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_abs.c                                         .::    .:/ .      .::   */
+/*   fractal_pix.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/12/03 11:22:16 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 14:50:12 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Created: 2019/01/09 11:04:44 by mtaquet      #+#   ##    ##    #+#       */
+/*   Updated: 2019/01/10 15:07:17 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-int		ft_abs(int nb)
-{
-	if (nb < 0)
-		nb = -nb;
-	return (nb);
-}
+#include "fractol.h"
 
-double	ft_dabs(double nb)
+void			ft_mandelbship_pix(t_map *map, int x, int y)
 {
-	if (nb < 0)
-		nb = -nb;
-	return (nb);
+	double		tmp;
+	double		z_r;
+	double		z_i;
+	intmax_t	i;
+
+	i = -1;
+	z_r = map->frac.z_r;
+	z_i = map->frac.z_i;
+	while ((z_r * z_r + z_i * z_i) < 4 && ++i < map->frac.i_max)
+	{
+		tmp = z_r;
+		z_r = z_r * z_r - z_i * z_i + map->frac.c_r;
+		z_i = 2 * ft_dabs(tmp * z_i) + map->frac.c_i;
+	}
+	if (i == map->frac.i_max)
+		ft_pixel_put(map, x, y, 0);
+	else
+		ft_color_pix(map, x, y, i);
 }

@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/09 11:04:44 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/09 11:20:50 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/10 12:19:25 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -77,13 +77,6 @@ void			ft_otherbrot_pix(t_map *map, int x, int y)
 		ft_color_pix(map, x, y, i);
 }
 
-double	ft_dabs(double nb)
-{
-	if (nb < 0)
-		nb = -nb;
-	return (nb);
-}
-
 void			ft_mandelbrot_pix(t_map *map, int x, int y)
 {
 	double		tmp;
@@ -98,7 +91,7 @@ void			ft_mandelbrot_pix(t_map *map, int x, int y)
 	{
 		tmp = z_r;
 		z_r = z_r * z_r - z_i * z_i + map->frac.c_r;
-		z_i = 2 * ft_dabs(tmp) * ft_dabs(z_i) + map->frac.c_i;
+		z_i = 2 * tmp * z_i + map->frac.c_i;
 	}
 	if (i == map->frac.i_max)
 		ft_pixel_put(map, x, y, 0);

@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 12:57:06 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/09 12:09:15 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/10 15:10:14 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -67,16 +67,16 @@ static void	ft_controls_msg(t_map *map)
 		0xFFFFFF, "pour vous deplacer dans la fractale");
 	mlx_string_put(map->mlx_ptr, map->win_ptr, 40, 600,
 		0xFFFFFF, "utilisez la molette de la souris");
-	mlx_string_put(map->mlx_ptr, map->win_ptr, 15, 630,
-		0xFFFFFF, "pour zomer sur un point de la fractale");
+	mlx_string_put(map->mlx_ptr, map->win_ptr, 11, 630,
+		0xFFFFFF, "pour zoomer sur un point de la fractale");
 	mlx_string_put(map->mlx_ptr, map->win_ptr, 25, 700,
 		0xFFFFFF, "faites un clique gauche sur un pixel");
 	mlx_string_put(map->mlx_ptr, map->win_ptr, 110, 730,
 		0xFFFFFF, "pour le centrer");
 	if (map->fractal == JULIA)
 	{
-		mlx_string_put(map->mlx_ptr, map->win_ptr, 27, 800,
-			0xFFFFFF, "apuyer sur s puis bouger la souris");
+		mlx_string_put(map->mlx_ptr, map->win_ptr, 25, 800,
+			0xFFFFFF, "appuyer sur s puis bouger la souris");
 		mlx_string_put(map->mlx_ptr, map->win_ptr, 30, 830,
 			0xFFFFFF, "pour changer l'ensemble de julia");
 	}
@@ -89,7 +89,7 @@ void		ft_controls(t_map *map)
 	tmp = 0;
 	ft_color_controls(map);
 	ft_infini(map);
-	if (map->fractal != FLAT)
+	if (map->fractal != FLAT && map->fractal != BURNING_SHIP)
 		ft_head(map);
 	mlx_string_put(map->mlx_ptr, map->win_ptr, 5, 180,
 			0xFFFFFF, "< I >  infini  :");

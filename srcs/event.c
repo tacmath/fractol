@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/29 04:34:44 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/09 12:05:11 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/10 13:11:12 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,7 +41,10 @@ static void	ft_deal_other_key(int key, t_map *map)
 		ft_head(map);
 	}
 	if (key == KEY_R)
+	{
 		ft_fractal_init(map);
+		ft_iterrations(map);
+	}
 }
 
 int			deal_key(int key, t_map *map)

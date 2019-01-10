@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/09 10:49:17 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/09 12:33:56 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/10 14:59:22 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,7 +36,7 @@ static void	ft_mandelbrot_init(t_map *map)
 	map->frac.x2 = 0.7;
 	map->frac.y1 = -1.2;
 	map->frac.y2 = 1.2;
-	map->frac.i_max = 70;
+	map->frac.i_max = 100;
 }
 
 int			ft_image_init(t_map *map)
@@ -48,7 +48,7 @@ int			ft_image_init(t_map *map)
 	if (!(map->img_ptr = mlx_new_image(map->mlx_ptr,
 		map->window.x, map->window.y)))
 	{
-		free(map->win_ptr);
+		mlx_destroy_window(map->mlx_ptr, map->win_ptr);
 		free(map->mlx_ptr);
 		free(map);
 		return (0);
@@ -62,7 +62,7 @@ int			ft_image_init(t_map *map)
 
 void		ft_fractal_init(t_map *map)
 {
-	if (map->fractal == MANDELBROT)
+	if (map->fractal == MANDELBROT || map->fractal == BURNING_SHIP)
 		ft_mandelbrot_init(map);
 	else
 		ft_julia_init(map);

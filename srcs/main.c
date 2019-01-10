@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/26 11:53:23 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/09 12:28:03 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/10 15:02:23 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,6 +20,7 @@ static int	usage_msg(void)
 	ft_putendl(" --> Mandelbrot");
 	ft_putendl(" --> Julia");
 	ft_putendl(" --> Flat");
+	ft_putendl(" --> BurningShip");
 	return (0);
 }
 
@@ -31,6 +32,8 @@ static void	ft_get_fractal(t_map *map, char **av)
 		map->fractal = JULIA;
 	else if (!ft_strcmp("Flat", av[1]))
 		map->fractal = FLAT;
+	else if (!ft_strcmp("BurningShip", av[1]))
+		map->fractal = BURNING_SHIP;
 }
 
 static int	ft_mlx_init(t_map *map)
@@ -60,7 +63,7 @@ int			main(int ac, char **av)
 	if (ac != 2)
 		return (usage_msg());
 	if (ft_strcmp("Mandelbrot", av[1]) && ft_strcmp("Julia", av[1])
-			&& ft_strcmp("Flat", av[1]))
+			&& ft_strcmp("Flat", av[1]) && ft_strcmp("BurningShip", av[1]))
 		return (usage_msg());
 	if (!(map = malloc(sizeof(t_map))))
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 13:17:18 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/09 10:45:06 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/10 12:57:21 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -57,12 +57,12 @@ static int	ft_get_color(t_map *map, intmax_t i, int div, int color)
 
 void		ft_pixel_put(t_map *map, int x, int y, int color)
 {
-	map->data[0 + x * (map->img_bits_per_pix >> 3)
-		+ y * map->img_size_line] = ft_hextob(color);
-	map->data[1 + x * (map->img_bits_per_pix >> 3)
-		+ y * map->img_size_line] = ft_hextog(color);
-	map->data[2 + x * (map->img_bits_per_pix >> 3)
-		+ y * map->img_size_line] = ft_hextor(color);
+	int i;
+
+	i = x * (map->img_bits_per_pix >> 3) + y * map->img_size_line;
+	map->data[i] = ft_hextob(color);
+	map->data[++i] = ft_hextog(color);
+	map->data[++i] = ft_hextor(color);
 }
 
 void		ft_color_pix(t_map *map, int x, int y, intmax_t i)

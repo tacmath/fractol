@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/05 14:37:32 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/09 12:31:23 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/10 15:07:53 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,6 +25,7 @@
 # define MANDELBROT			1
 # define JULIA				2
 # define FLAT				3
+# define BURNING_SHIP		4
 # define KEY_PRESS			2
 # define BUTTON_RELEASE		5
 # define MOTION_NOTIFY		6
@@ -117,6 +118,7 @@ void						ft_head(t_map *map);
 void						ft_controls(t_map *map);
 void						ft_otherbrot_pix(t_map *map, int x, int y);
 void						ft_mandelbrot_pix(t_map *map, int x, int y);
+void						ft_mandelbship_pix(t_map *map, int x, int y);
 void						ft_draw(t_map *map);
 
 #endif
