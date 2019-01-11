@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/05 14:37:32 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 15:07:53 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/11 14:09:39 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,8 +19,8 @@
 # include <inttypes.h>
 # define TRUE				1
 # define FALSE				0
-# define WIDTH                          1300
-# define LENGTH                          900
+# define WIDTH				1300
+# define LENGTH				900
 # define NB_THREAD			90
 # define MANDELBROT			1
 # define JULIA				2
@@ -86,8 +86,8 @@ struct						s_map
 	int						img_size_line;
 	int						colors[5][4];
 	int						palette;
-	int					thread;
-	int					thread_length;
+	int						thread;
+	int						thread_length;
 	char					fractal;
 	char					mouse_status;
 	char					color_status;

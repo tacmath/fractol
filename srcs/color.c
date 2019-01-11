@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 13:17:18 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 12:57:21 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/11 14:05:04 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,10 +23,10 @@ void		ft_color_init(t_map *map)
 	map->colors[1][1] = 0xFFFF00;
 	map->colors[1][2] = 0x0000FF;
 	map->colors[1][3] = 0xFFFFFF;
-	map->colors[2][0] = 0xF7F9D4;
-	map->colors[2][1] = 0xC0510A;
-	map->colors[2][2] = 0x000652;
-	map->colors[2][3] = 0x226ECE;
+	map->colors[2][0] = 0x000040;
+	map->colors[2][1] = 0x2020FF;
+	map->colors[2][2] = 0x1010FF;
+	map->colors[2][3] = 0xFFFFFF;
 	map->colors[3][0] = 0x000070;
 	map->colors[3][1] = 0xFF0000;
 	map->colors[3][2] = 0xFFFF00;

@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 14:04:42 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/09 11:30:00 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/11 13:03:02 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,7 +26,7 @@ static void	ft_zoom(int x, int y, t_map *map)
 	dy = y * size_y / ((double)map->window.y);
 	if (map->inf_status == TRUE)
 	{
-		map->frac.i_max += map->frac.i_max / 10;
+		map->frac.i_max += map->frac.i_max / 20;
 		ft_iterrations(map);
 	}
 	map->frac.x1 += (dx) / 10;
@@ -45,7 +45,7 @@ static void	ft_dezoom(t_map *map)
 	size_y = (map->frac.y2 - map->frac.y1);
 	if (map->inf_status == TRUE)
 	{
-		map->frac.i_max -= map->frac.i_max / 20;
+		map->frac.i_max -= map->frac.i_max / 40;
 		ft_iterrations(map);
 	}
 	map->frac.x1 -= size_x / 20;
