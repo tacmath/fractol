@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/09 11:04:44 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 15:07:17 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 13:15:42 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,7 +30,7 @@ void			ft_mandelbship_pix(t_map *map, int x, int y)
 		z_i = 2 * ft_dabs(tmp * z_i) + map->frac.c_i;
 	}
 	if (i == map->frac.i_max)
-		ft_pixel_put(map, x, y, 0);
+		map->data[x + y * map->window.x] = 0;
 	else
 		ft_color_pix(map, x, y, i);
 }

@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/05 14:37:32 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/11 14:09:39 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 13:17:20 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,7 @@
 # define FALSE				0
 # define WIDTH				1300
 # define LENGTH				900
-# define NB_THREAD			90
+# define NB_THREAD			18
 # define MANDELBROT			1
 # define JULIA				2
 # define FLAT				3
@@ -80,10 +80,8 @@ struct						s_map
 	void					*mlx_ptr;
 	void					*win_ptr;
 	void					*img_ptr;
-	char					*data;
+	int						*data;
 	t_size					window;
-	int						img_bits_per_pix;
-	int						img_size_line;
 	int						colors[5][4];
 	int						palette;
 	int						thread;
@@ -109,7 +107,6 @@ int							deal_mouse(int button, int x, int y, t_map *map);
 int							deal_mv(int x, int y, t_map *map);
 int							deal_key_press(int key, t_map *map);
 void						ft_color_change(int *color);
-void						ft_pixel_put(t_map *map, int x, int y, int color);
 void						ft_color_pix(t_map *map, int x, int y, intmax_t i);
 void						ft_infini(t_map *map);
 void						ft_iterrations(t_map *map);

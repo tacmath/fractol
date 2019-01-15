@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/04 13:17:18 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/11 14:05:04 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 13:04:53 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,16 +55,6 @@ static int	ft_get_color(t_map *map, intmax_t i, int div, int color)
 	return (ft_rgb(r, g, b));
 }
 
-void		ft_pixel_put(t_map *map, int x, int y, int color)
-{
-	int i;
-
-	i = x * (map->img_bits_per_pix >> 3) + y * map->img_size_line;
-	map->data[i] = ft_hextob(color);
-	map->data[++i] = ft_hextog(color);
-	map->data[++i] = ft_hextor(color);
-}
-
 void		ft_color_pix(t_map *map, int x, int y, intmax_t i)
 {
 	int color;
@@ -78,9 +68,9 @@ void		ft_color_pix(t_map *map, int x, int y, intmax_t i)
 	else
 		color = ft_get_color(map, i - 50, map->frac.i_max - 50, 3);
 	if (map->color_status == TRUE)
-		ft_pixel_put(map, x, y, color);
+		map->data[x + y * map->window.x] = color;
 	else
-		ft_pixel_put(map, x, y, 0xFFFFFF);
+		map->data[x + y * map->window.x] = 0xFFFFFF;
 }
 
 void		ft_color_change(int *color)

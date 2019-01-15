@@ -6,7 +6,7 @@
 /*   By: mtaquet <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/01/09 10:49:17 by mtaquet      #+#   ##    ##    #+#       */
-/*   Updated: 2019/01/10 14:59:22 by mtaquet     ###    #+. /#+    ###.fr     */
+/*   Updated: 2019/01/15 13:01:12 by mtaquet     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,10 +53,8 @@ int			ft_image_init(t_map *map)
 		free(map);
 		return (0);
 	}
-	map->data = mlx_get_data_addr(map->img_ptr,
+	map->data = (int*)mlx_get_data_addr(map->img_ptr,
 		&bits_per_pix, &size_line, &endian);
-	map->img_size_line = size_line;
-	map->img_bits_per_pix = bits_per_pix;
 	return (1);
 }
 
